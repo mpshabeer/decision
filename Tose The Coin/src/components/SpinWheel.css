@@ -1,0 +1,325 @@
+.spin-wheel-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+    min-height: 80vh;
+    /* Ensure it takes up space but doesn't force scroll unnecessarily */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Enhanced needle - Fixed position for accuracy */
+.wheel-needle {
+    position: absolute;
+    top: -5px;
+    /* Tighter positioning */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.wheel-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--spacing-md) 0;
+    position: relative;
+    padding: 10px 0;
+    /* Minimal padding */
+    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+}
+
+.wheel-canvas {
+    max-width: 100%;
+    /* Responsive height: 40% of viewport height on desktop, slightly less on mobile */
+    max-height: 45vh;
+    width: auto;
+    aspect-ratio: 1/1;
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.4));
+    /* transition: transform 4s ...; Removed for physics engine */
+    border-radius: 50%;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 8px rgba(255, 255, 255, 0.2),
+        0 0 0 12px rgba(139, 92, 246, 0.2),
+        inset 0 0 40px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .spin-wheel-container {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        justify-content: flex-start;
+        /* Top align on mobile */
+    }
+
+    .wheel-section {
+        margin: var(--spacing-sm) 0;
+    }
+
+    .wheel-canvas {
+        max-height: 40vh;
+        /* Smaller on mobile */
+        max-width: 90vw;
+    }
+
+    .wheel-needle {
+        transform: translateX(-50%) scale(0.85);
+        top: -5px;
+    }
+}
+
+/* Glow effect during spin */
+.wheel-canvas.spinning {
+    box-shadow:
+        0 15px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 15px rgba(255, 255, 255, 0.15),
+        0 0 0 20px rgba(139, 92, 246, 0.3),
+        0 0 60px rgba(139, 92, 246, 0.5),
+        inset 0 0 30px rgba(0, 0, 0, 0.1);
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+.wheel-controls {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.wheel-controls .btn {
+    min-width: 200px;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+/* Compact Result Display */
+.wheel-section+.wheel-controls+.result-display {
+    background: linear-gradient(135deg,
+            rgba(139, 92, 246, 0.95),
+            rgba(236, 72, 153, 0.95));
+    backdrop-filter: blur(20px);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    margin: var(--spacing-sm) 0;
+    box-shadow: var(--shadow-2xl), var(--shadow-glow-lg);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: celebrate 0.4s ease-out, scaleIn 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: 10px;
+    /* Ensure it doesn't take too much height */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wheel-section+.wheel-controls+.result-display::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    transform: rotate(45deg);
+    animation: shimmer 2s linear infinite;
+}
+
+.wheel-section+.wheel-controls+.result-display .result-text {
+    font-size: 2rem;
+    /* Smaller font */
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.25rem;
+    position: relative;
+    z-index: 1;
+}
+
+.wheel-section+.wheel-controls+.result-display p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Items manager section - Compact */
+.items-manager {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(15px);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md);
+    border: 2px solid var(--border-color);
+    margin-top: var(--spacing-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.items-manager h3 {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.add-item-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.add-item-form input {
+    flex: 1;
+    margin: 0;
+    padding: 0.5rem 1rem;
+}
+
+.add-item-form .btn {
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+}
+
+.items-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-height: 150px;
+    overflow-y: auto;
+    /* Scrollable list instead of taking page space */
+}
+
+.item-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
+
+.item-chip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.item-chip:hover::before {
+    left: 100%;
+}
+
+/* ... existing hover effects ... */
+.item-chip:hover {
+    transform: translateX(6px) translateY(-3px);
+    box-shadow: var(--shadow-xl), var(--shadow-glow);
+    border-left-width: 6px;
+}
+
+.item-chip.editing {
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+    background: white;
+}
+
+.item-text {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    flex: 1;
+    /* Allow text to grow */
+}
+
+.item-remove {
+    background: var(--bg-tertiary);
+    border: none;
+    color: var(--text-tertiary);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-base);
+    font-weight: bold;
+}
+
+.item-remove:hover {
+    background: var(--danger);
+    color: white;
+    transform: rotate(90deg) scale(1.2);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Info section - minimal */
+.items-manager+.info-section {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: linear-gradient(135deg,
+            rgba(139, 92, 246, 0.1),
+            rgba(236, 72, 153, 0.1));
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary);
+    backdrop-filter: blur(10px);
+}
+
+.items-manager+.info-section .info-text {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    /* Wheel styles handled in upper media query to support new visuals */
+
+    .add-item-form {
+        flex-direction: column;
+    }
+
+    .add-item-form .btn {
+        width: 100%;
+    }
+
+    .items-list {
+        gap: 0.5rem;
+    }
+
+    .wheel-controls .btn {
+        min-width: 160px;
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .wheel-section+.wheel-controls+.result-display .result-text {
+        font-size: 1.75rem;
+    }
+
+    .spin-wheel-container {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+}

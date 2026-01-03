@@ -1,0 +1,145 @@
+.dice-roll-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+    perspective: 1000px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dice-wrapper {
+    perspective: 1000px;
+    /* Responsive height */
+    height: max(200px, 35vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.dice-scene {
+    width: 150px;
+    height: 150px;
+    perspective: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: var(--spacing-xl) 0;
+}
+
+.dice-cube {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease-out;
+    /* Smooth transition to final result */
+}
+
+/* Rolling Animation */
+.dice-cube.rolling {
+    animation: roll 0.5s infinite linear;
+}
+
+@keyframes roll {
+    0% {
+        transform: rotateX(0) rotateY(0) rotateZ(0);
+    }
+
+    100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+.cube-face {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    /* Optional: hide back faces if desired, but for glass effect keep visible */
+}
+
+/* Position faces in 3D space (assuming 100px width, translateZ is 50px) */
+.face-1 {
+    transform: rotateY(0deg) translateZ(50px);
+}
+
+.face-2 {
+    transform: rotateY(90deg) translateZ(50px);
+}
+
+.face-3 {
+    transform: rotateY(180deg) translateZ(50px);
+}
+
+.face-4 {
+    transform: rotateY(-90deg) translateZ(50px);
+}
+
+.face-5 {
+    transform: rotateX(90deg) translateZ(50px);
+}
+
+.face-6 {
+    transform: rotateX(-90deg) translateZ(50px);
+}
+
+.dice-dot {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #1e293b;
+    border-radius: 50%;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.5);
+    transform: translate(-50%, -50%);
+    /* Centering fix */
+}
+
+.dice-controls {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.dice-controls .btn {
+    min-width: 200px;
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
+}
+
+/* Result Area if added later can go here */
+
+@media (max-width: 768px) {
+    .dice-roll-container {
+        padding: var(--spacing-sm);
+        justify-content: flex-start;
+    }
+
+    .dice-wrapper {
+        height: 35vh;
+    }
+
+    .dice {
+        width: 120px;
+        height: 120px;
+    }
+
+    .dice-dot {
+        width: 20px;
+        height: 20px;
+    }
+
+    .dice-controls .btn {
+        min-width: 180px;
+        font-size: 1.1rem;
+    }
+}
