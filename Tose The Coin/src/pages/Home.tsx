@@ -8,7 +8,7 @@ export const Home = () => {
         {
             path: '/coin-toss',
             title: 'Coin Toss',
-            icon: '○',
+            icon: '♕',
             description: 'Classic heads or tails decision maker with smooth flip animation',
             gradient: 'linear-gradient(135deg, #ffd700, #ffed4e)'
         },
