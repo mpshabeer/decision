@@ -1,0 +1,25 @@
+{
+    "name": "Decision Helper",
+    "short_name": "DecisionHelper",
+    "description": "Free online decision making tools including coin toss, spin wheel, dice roll, random number generator, and yes/no picker",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#8b5cf6",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/icon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "utilities",
+        "productivity",
+        "entertainment"
+    ],
+    "lang": "en-US",
+    "dir": "ltr"
+}

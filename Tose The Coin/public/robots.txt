@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /admin/
+Crawl-delay: 1
 
-Sitemap: https://decisionhelper.com/sitemap.xml
+Sitemap: https://decisionhelper.site/sitemap.xml
