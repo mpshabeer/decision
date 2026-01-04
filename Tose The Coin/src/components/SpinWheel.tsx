@@ -404,7 +404,7 @@ export const SpinWheel = () => {
                         maxLength={20}
                         disabled={!editingId && items.length >= 10}
                     />
-                    <div style={{ display: 'flex', gap: '5px' }}>
+                    <div className="button-group">
                         {editingId && (
                             <button
                                 className="btn btn-outline"

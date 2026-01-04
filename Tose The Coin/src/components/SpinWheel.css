@@ -183,9 +183,16 @@
     padding: 0.5rem 1rem;
 }
 
+.button-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
 .add-item-form .btn {
     flex-shrink: 0;
     padding: 0.5rem 1rem;
+    white-space: nowrap;
 }
 
 .items-list {
@@ -299,27 +306,112 @@
 
     .add-item-form {
         flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .add-item-form input {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        min-height: 44px;
+        /* Better touch target */
+    }
+
+    /* Fix button container layout */
+    .button-group {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        width: 100%;
     }
 
     .add-item-form .btn {
-        width: 100%;
+        flex: 1;
+        min-height: 44px;
+        /* Better touch target */
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
     }
 
     .items-list {
         gap: 0.5rem;
+        max-height: 200px;
+        /* Slightly taller on mobile */
+    }
+
+    .item-chip {
+        padding: 0.6rem 0.85rem;
+        font-size: 0.95rem;
+        min-height: 40px;
+        /* Better touch target */
+    }
+
+    .item-remove {
+        width: 24px;
+        height: 24px;
+        font-size: 1.1rem;
     }
 
     .wheel-controls .btn {
-        min-width: 160px;
-        font-size: 1rem;
-        padding: 0.75rem 1.5rem;
+        width: 100%;
+        max-width: 300px;
+        min-width: unset;
+        font-size: 1.05rem;
+        padding: 0.85rem 1.5rem;
+        min-height: 48px;
+        /* Better touch target */
+    }
+
+    .wheel-section+.wheel-controls+.result-display {
+        padding: var(--spacing-md);
+        margin: var(--spacing-sm) 0;
     }
 
     .wheel-section+.wheel-controls+.result-display .result-text {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+    }
+
+    .wheel-section+.wheel-controls+.result-display p {
+        font-size: 0.9rem;
     }
 
     .spin-wheel-container {
-        padding: var(--spacing-md) var(--spacing-sm);
+        padding: var(--spacing-sm) var(--spacing-sm);
+    }
+
+    .items-manager {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .items-manager h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Extra small screens (phones in portrait) */
+@media (max-width: 480px) {
+    .wheel-canvas {
+        max-height: 35vh;
+    }
+
+    .wheel-needle {
+        transform: translateX(-50%) scale(0.75);
+    }
+
+    .add-item-form input {
+        font-size: 16px;
+        /* Prevent zoom on iOS */
+    }
+
+    .item-chip {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .wheel-section+.wheel-controls+.result-display .result-text {
+        font-size: 1.35rem;
+    }
+
+    .spin-wheel-container {
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
 }
