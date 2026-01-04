@@ -48,15 +48,15 @@ export const Home = () => {
                 title="Decision Helper - Free Online Tools | Coin Toss, Spin Wheel & More"
                 description="Free online decision making tools including coin toss, spin wheel, dice roll, random number generator, and yes/no picker. No registration required. Fast and mobile-friendly."
                 keywords="decision helper, coin toss online, spin wheel decision, random picker online, dice roll online, yes no decision maker, random number generator, decision making tools, flip a coin, wheel spinner, dice roller"
-                canonical="https://decisionhelper.site/"
+                canonical="https://decisionhelper.online/"
                 schema={{
                     "@context": "https://schema.org",
                     "@graph": [
                         {
                             "@type": "WebApplication",
-                            "@id": "https://decisionhelper.site/#webapp",
+                            "@id": "https://decisionhelper.online/#webapp",
                             "name": "Decision Helper",
-                            "url": "https://decisionhelper.site",
+                            "url": "https://decisionhelper.online",
                             "description": "Free online decision making tools including coin toss, spin wheel, dice roll, random number generator, and yes/no picker",
                             "applicationCategory": "UtilityApplication",
                             "operatingSystem": "Any",
@@ -66,7 +66,7 @@ export const Home = () => {
                                 "priceCurrency": "USD"
                             },
                             "browserRequirements": "Requires JavaScript. Requires HTML5.",
-                            "screenshot": "https://decisionhelper.site/icon.png",
+                            "screenshot": "https://decisionhelper.online/icon.png",
                             "aggregateRating": {
                                 "@type": "AggregateRating",
                                 "ratingValue": "4.8",
@@ -75,32 +75,32 @@ export const Home = () => {
                         },
                         {
                             "@type": "WebSite",
-                            "@id": "https://decisionhelper.site/#website",
-                            "url": "https://decisionhelper.site",
+                            "@id": "https://decisionhelper.online/#website",
+                            "url": "https://decisionhelper.online",
                             "name": "Decision Helper"
                             ,
                             "description": "Free online decision making tools",
                             "publisher": {
                                 "@type": "Organization",
-                                "@id": "https://decisionhelper.site/#organization"
+                                "@id": "https://decisionhelper.online/#organization"
                             },
                             "potentialAction": {
                                 "@type": "SearchAction",
                                 "target": {
                                     "@type": "EntryPoint",
-                                    "urlTemplate": "https://decisionhelper.site/?s={search_term_string}"
+                                    "urlTemplate": "https://decisionhelper.online/?s={search_term_string}"
                                 },
                                 "query-input": "required name=search_term_string"
                             }
                         },
                         {
                             "@type": "Organization",
-                            "@id": "https://decisionhelper.site/#organization",
+                            "@id": "https://decisionhelper.online/#organization",
                             "name": "Decision Helper",
-                            "url": "https://decisionhelper.site",
+                            "url": "https://decisionhelper.online",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://decisionhelper.site/icon.png",
+                                "url": "https://decisionhelper.online/icon.png",
                                 "width": 512,
                                 "height": 512
                             },
@@ -113,7 +113,7 @@ export const Home = () => {
                                     "@type": "ListItem",
                                     "position": 1,
                                     "name": "Home",
-                                    "item": "https://decisionhelper.site/"
+                                    "item": "https://decisionhelper.online/"
                                 }
                             ]
                         }
